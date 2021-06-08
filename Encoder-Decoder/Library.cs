@@ -18,5 +18,13 @@ namespace Encoder_Decoder
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new EncoderDecoder());
         }
+        static void Null1()
+        {
+            string a = "?k9K3";
+            string b = "x3*A5";
+            string c = "~a3B9";
+            string d = "5Mg9&";
+            string e = "";
+        }
     }
 }

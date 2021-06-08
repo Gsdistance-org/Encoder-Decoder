@@ -195,9 +195,12 @@ namespace Encoder_Decoder
             this.Controls.Add(this.Encodestring);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.help.SetHelpString(this, "");
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EncoderDecoder";
+            this.help.SetShowHelp(this, true);
             this.Text = "Encoder Decoder";
             this.ResumeLayout(false);
             this.PerformLayout();
