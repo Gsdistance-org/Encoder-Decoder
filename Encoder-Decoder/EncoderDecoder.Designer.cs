@@ -48,8 +48,10 @@ namespace Encoder_Decoder
             this.Progresslabelc = new System.Windows.Forms.Label();
             this.processer = new System.ComponentModel.BackgroundWorker();
             this.opentext = new System.Windows.Forms.OpenFileDialog();
-            this.engineselector = new System.Windows.Forms.ComboBox();
+            this.hashengineselector = new System.Windows.Forms.ComboBox();
             this.encodetypeselector = new System.Windows.Forms.ComboBox();
+            this.hashselector = new System.Windows.Forms.RichTextBox();
+            this.Bitcodeselector = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // updater
@@ -157,7 +159,7 @@ namespace Encoder_Decoder
             // Progresslabel
             // 
             this.Progresslabel.AutoSize = true;
-            this.Progresslabel.Location = new System.Drawing.Point(191, 136);
+            this.Progresslabel.Location = new System.Drawing.Point(258, 2);
             this.Progresslabel.Name = "Progresslabel";
             this.Progresslabel.Size = new System.Drawing.Size(72, 20);
             this.Progresslabel.TabIndex = 7;
@@ -166,7 +168,7 @@ namespace Encoder_Decoder
             // Progresslabelc
             // 
             this.Progresslabelc.AutoSize = true;
-            this.Progresslabelc.Location = new System.Drawing.Point(191, 156);
+            this.Progresslabelc.Location = new System.Drawing.Point(258, 22);
             this.Progresslabelc.Name = "Progresslabelc";
             this.Progresslabelc.Size = new System.Drawing.Size(0, 20);
             this.Progresslabelc.TabIndex = 8;
@@ -180,18 +182,18 @@ namespace Encoder_Decoder
             this.opentext.FileName = "*.txt";
             this.opentext.FileOk += new System.ComponentModel.CancelEventHandler(this.opentext_FileOk);
             // 
-            // engineselector
+            // hashengineselector
             // 
-            this.engineselector.FormattingEnabled = true;
-            this.engineselector.Items.AddRange(new object[] {
+            this.hashengineselector.FormattingEnabled = true;
+            this.hashengineselector.Items.AddRange(new object[] {
+            "null//0",
             "null//2",
-            "null//3",
-            "base64"});
-            this.engineselector.Location = new System.Drawing.Point(169, 223);
-            this.engineselector.Name = "engineselector";
-            this.engineselector.Size = new System.Drawing.Size(121, 28);
-            this.engineselector.TabIndex = 9;
-            this.engineselector.SelectedIndexChanged += new System.EventHandler(this.engineselector_SelectedIndexChanged);
+            "null//3"});
+            this.hashengineselector.Location = new System.Drawing.Point(169, 100);
+            this.hashengineselector.Name = "hashengineselector";
+            this.hashengineselector.Size = new System.Drawing.Size(121, 28);
+            this.hashengineselector.TabIndex = 9;
+            this.hashengineselector.SelectedIndexChanged += new System.EventHandler(this.engineselector_SelectedIndexChanged);
             // 
             // encodetypeselector
             // 
@@ -199,11 +201,29 @@ namespace Encoder_Decoder
             this.encodetypeselector.Items.AddRange(new object[] {
             "Hash",
             "Bitcode",
-            "Slash"});
-            this.encodetypeselector.Location = new System.Drawing.Point(169, 49);
+            "Slash",
+            "None"});
+            this.encodetypeselector.Location = new System.Drawing.Point(169, 55);
             this.encodetypeselector.Name = "encodetypeselector";
             this.encodetypeselector.Size = new System.Drawing.Size(121, 28);
             this.encodetypeselector.TabIndex = 10;
+            this.encodetypeselector.SelectedIndexChanged += new System.EventHandler(this.encodetypeselector_SelectedIndexChanged);
+            // 
+            // hashselector
+            // 
+            this.hashselector.Location = new System.Drawing.Point(169, 244);
+            this.hashselector.Name = "hashselector";
+            this.hashselector.Size = new System.Drawing.Size(121, 31);
+            this.hashselector.TabIndex = 11;
+            this.hashselector.Text = "";
+            // 
+            // Bitcodeselector
+            // 
+            this.Bitcodeselector.FormattingEnabled = true;
+            this.Bitcodeselector.Location = new System.Drawing.Point(169, 100);
+            this.Bitcodeselector.Name = "Bitcodeselector";
+            this.Bitcodeselector.Size = new System.Drawing.Size(121, 28);
+            this.Bitcodeselector.TabIndex = 12;
             // 
             // EncoderDecoder
             // 
@@ -213,8 +233,10 @@ namespace Encoder_Decoder
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(329, 353);
+            this.Controls.Add(this.Bitcodeselector);
+            this.Controls.Add(this.hashselector);
             this.Controls.Add(this.encodetypeselector);
-            this.Controls.Add(this.engineselector);
+            this.Controls.Add(this.hashengineselector);
             this.Controls.Add(this.Progresslabelc);
             this.Controls.Add(this.Progresslabel);
             this.Controls.Add(this.helpbutton);
@@ -258,8 +280,10 @@ namespace Encoder_Decoder
         public System.Windows.Forms.Label Progresslabelc;
         private System.ComponentModel.BackgroundWorker processer;
         public System.Windows.Forms.OpenFileDialog opentext;
-        private System.Windows.Forms.ComboBox engineselector;
+        private System.Windows.Forms.ComboBox hashengineselector;
         private System.Windows.Forms.ComboBox encodetypeselector;
+        private System.Windows.Forms.RichTextBox hashselector;
+        private System.Windows.Forms.ComboBox Bitcodeselector;
     }
 }
 

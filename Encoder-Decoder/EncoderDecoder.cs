@@ -72,7 +72,7 @@ namespace Encoder_Decoder
             }
             else if (encodetypeselector.Text == "Hash")
             {
-                if (engineselector.Text == "null//2")
+                if (hashengineselector.Text == "null//2")
                 {
                     byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
                     using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
@@ -86,12 +86,26 @@ namespace Encoder_Decoder
                         }
                     }
                 }
-                if (engineselector.Text == "null//3")
+                else if (hashengineselector.Text == "null//3")
                 {
                     byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
                     using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
                     {
                         byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null3hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateEncryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Decodestring.Text = (Convert.ToBase64String(results, 0, results.Length));
+                        }
+                    }
+                }
+                else if (hashengineselector.Text == "null//0")
+                {
+                    byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(this.hashselector.Text));
                         using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
                         {
                             ICryptoTransform transform = tripdes.CreateEncryptor();
@@ -162,7 +176,7 @@ namespace Encoder_Decoder
             }
             else if (encodetypeselector.Text == "Hash")
             {
-                if (engineselector.Text == "null//2")
+                if (hashengineselector.Text == "null//2")
                 {
                     byte[] data = Convert.FromBase64String(Decodestring.Text);
                     using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
@@ -176,12 +190,26 @@ namespace Encoder_Decoder
                         }
                     }
                 }
-                if (engineselector.Text == "null//3")
+                else if (hashengineselector.Text == "null//3")
                 {
                     byte[] data = Convert.FromBase64String(Decodestring.Text);
                     using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
                     {
                         byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null3hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateDecryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Encodestring.Text = (UTF8Encoding.UTF8.GetString(results));
+                        }
+                    }
+                }
+                else if (hashengineselector.Text == "null//0")
+                {
+                    byte[] data = Convert.FromBase64String(Decodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(this.hashselector.Text));
                         using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
                         {
                             ICryptoTransform transform = tripdes.CreateDecryptor();
@@ -225,13 +253,23 @@ namespace Encoder_Decoder
 
         private void engineselector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedengine = (this.engineselector.Text);
+            string selectedengine = (this.hashengineselector.Text);
             File.WriteAllText(@".\engine.memory", selectedengine);
+            if (this.hashengineselector.Text == "null//0")
+            {
+                hashselector.Show();
+            }
+            else
+            {
+                hashselector.Hide();
+            }
         }
 
         private void EncoderDecoder_Load(object sender, EventArgs e)
         {
-
+            hashengineselector.Hide();
+            Bitcodeselector.Hide();
+            hashselector.Hide();
         }
 
         private void toencodelabel_Click(object sender, EventArgs e)
@@ -242,6 +280,25 @@ namespace Encoder_Decoder
         private void todecodelabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void encodetypeselector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (encodetypeselector.Text == "Hash")
+            {
+                hashengineselector.Show();
+                Bitcodeselector.Hide();
+            }
+            else if (encodetypeselector.Text == "Bitcode")
+            {
+                Bitcodeselector.Show();
+                hashengineselector.Hide();
+            }
+            else
+            {
+                hashengineselector.Hide();
+                Bitcodeselector.Hide();
+            }
         }
     }
 }
