@@ -187,6 +187,7 @@ namespace Encoder_Decoder
             this.hashengineselector.FormattingEnabled = true;
             this.hashengineselector.Items.AddRange(new object[] {
             "null//0",
+            "null//1",
             "null//2",
             "null//3"});
             this.hashengineselector.Location = new System.Drawing.Point(169, 100);
