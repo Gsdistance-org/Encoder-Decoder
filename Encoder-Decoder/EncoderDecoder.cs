@@ -15,6 +15,7 @@ namespace Encoder_Decoder
     public partial class EncoderDecoder : Form
     {
         string null2hash = "?MtMJMQc";
+        string null3hash = "MLYcn,sAvmRurrlC";
         public EncoderDecoder()
         {
             InitializeComponent();
@@ -77,6 +78,20 @@ namespace Encoder_Decoder
                     using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
                     {
                         byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null2hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateEncryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Decodestring.Text = (Convert.ToBase64String(results, 0, results.Length));
+                        }
+                    }
+                }
+                if (engineselector.Text == "null//3")
+                {
+                    byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null3hash));
                         using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
                         {
                             ICryptoTransform transform = tripdes.CreateEncryptor();
@@ -161,6 +176,20 @@ namespace Encoder_Decoder
                         }
                     }
                 }
+                if (engineselector.Text == "null//3")
+                {
+                    byte[] data = Convert.FromBase64String(Decodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null3hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateDecryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Encodestring.Text = (UTF8Encoding.UTF8.GetString(results));
+                        }
+                    }
+                }
                 this.Progresslabelc.Text = ("Done.");
             }
         }
@@ -201,6 +230,16 @@ namespace Encoder_Decoder
         }
 
         private void EncoderDecoder_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toencodelabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void todecodelabel_Click(object sender, EventArgs e)
         {
 
         }
