@@ -48,6 +48,7 @@ namespace Encoder_Decoder
             this.Progresslabelc = new System.Windows.Forms.Label();
             this.processer = new System.ComponentModel.BackgroundWorker();
             this.opentext = new System.Windows.Forms.OpenFileDialog();
+            this.engineselector = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // updater
@@ -155,9 +156,9 @@ namespace Encoder_Decoder
             this.Progresslabel.AutoSize = true;
             this.Progresslabel.Location = new System.Drawing.Point(505, 140);
             this.Progresslabel.Name = "Progresslabel";
-            this.Progresslabel.Size = new System.Drawing.Size(68, 20);
+            this.Progresslabel.Size = new System.Drawing.Size(72, 20);
             this.Progresslabel.TabIndex = 7;
-            this.Progresslabel.Text = "Progress";
+            this.Progresslabel.Text = "Progress:";
             // 
             // Progresslabelc
             // 
@@ -176,6 +177,18 @@ namespace Encoder_Decoder
             this.opentext.FileName = "*.txt";
             this.opentext.FileOk += new System.ComponentModel.CancelEventHandler(this.opentext_FileOk);
             // 
+            // engineselector
+            // 
+            this.engineselector.FormattingEnabled = true;
+            this.engineselector.Items.AddRange(new object[] {
+            "null//2",
+            "base64"});
+            this.engineselector.Location = new System.Drawing.Point(474, 183);
+            this.engineselector.Name = "engineselector";
+            this.engineselector.Size = new System.Drawing.Size(121, 28);
+            this.engineselector.TabIndex = 9;
+            this.engineselector.SelectedIndexChanged += new System.EventHandler(this.engineselector_SelectedIndexChanged);
+            // 
             // EncoderDecoder
             // 
             this.AccessibleDescription = "This is a encoder/decoder program for null and others";
@@ -184,6 +197,7 @@ namespace Encoder_Decoder
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(607, 353);
+            this.Controls.Add(this.engineselector);
             this.Controls.Add(this.Progresslabelc);
             this.Controls.Add(this.Progresslabel);
             this.Controls.Add(this.helpbutton);
@@ -201,7 +215,7 @@ namespace Encoder_Decoder
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EncoderDecoder";
             this.help.SetShowHelp(this, true);
-            this.Text = "Encoder Decoder";
+            this.Text = "s";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,6 +240,7 @@ namespace Encoder_Decoder
         public System.Windows.Forms.Label Progresslabelc;
         private System.ComponentModel.BackgroundWorker processer;
         public System.Windows.Forms.OpenFileDialog opentext;
+        private System.Windows.Forms.ComboBox engineselector;
     }
 }
 

@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Encoder_Decoder.Library</StartupObject>
+    <StartupObject>Encoder_Decoder.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>encoderdecoderlogo.ico</ApplicationIcon>
@@ -71,13 +71,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine.cs" />
     <Compile Include="EncoderDecoder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EncoderDecoder.Designer.cs">
       <DependentUpon>EncoderDecoder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EncoderDecoder.resx">
       <DependentUpon>EncoderDecoder.cs</DependentUpon>
