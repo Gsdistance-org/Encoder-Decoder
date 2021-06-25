@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace Encoder_Decoder
 {
     public partial class EncoderDecoder : Form
     {
+        string hash = "nT/r4jOx";
         public EncoderDecoder()
         {
             InitializeComponent();
@@ -64,6 +66,20 @@ namespace Encoder_Decoder
                     {
                         MessageBox.Show("An error has happened");
                         return ("");
+                    }
+                }
+            }
+            else if (encodetypeselector.Text == "Hash")
+            {
+                byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
+                using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                {
+                    byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
+                    using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                    {
+                        ICryptoTransform transform = tripdes.CreateEncryptor();
+                        byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                        this.Decodestring.Text = (Convert.ToBase64String(results, 0, results.Length));
                     }
                 }
             }
