@@ -24,7 +24,18 @@ namespace Encoder_Decoder.null2
         public static string l = "f.4kIJjs";
         public static string n = "ZChR5frL";
         public static string m = "QLQWYZhY";
-        public static string 
+        public static string o = "1xtUbm3h";
+        public static string ö = "hj%HPo.K";
+        public static string p = "o,5TDfwb";
+        public static string r = "!V73J!YB";
+        public static string s = "jcl/.jo0";
+        public static string ş = "XOzEFwbP";
+        public static string t = "@,MIXNOR";
+        public static string u = "gj5.w51e";
+        public static string ü = "sErv9P*1";
+        public static string v = "MYd*iLmu";
+        public static string y = "gU3vtMCK";
+        public static string z = "kDroe*kw";
     }
 }
 namespace Encoder_Decoder.null3

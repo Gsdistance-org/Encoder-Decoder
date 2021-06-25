@@ -27,41 +27,44 @@ namespace Encoder_Decoder
         /// 
         public void Encodefrommem()
         {
-            string engine = (File.ReadAllText(@".\engine.memory"));
-            string encode = (File.ReadAllText(@".\toencode.memory"));
-            if (engine == "null//2")
+            if (encodetypeselector.Text == "Bitcode")
             {
-                double mempart = 5;
-                processengine(mempart , 0);
-            }
-            else if (engine == "base64")
-            {
-                double mempart = 0;
-                processengine(mempart, 1);
-            }
-            string processengine(double mempart, double isbase)
-            {
-                if (isbase == 0)
+                string engine = (File.ReadAllText(@".\engine.memory"));
+                string encode = (File.ReadAllText(@".\toencode.memory"));
+                if (engine == "null//2")
                 {
-                    double encodetxtlenght = (encode.Length);
-                    double processedtxt = (0);
-                    double toprocessparts = (processedtxt / mempart);
-                    while (processedtxt > encodetxtlenght)
+                    double mempart = 5;
+                    processengine(mempart, 0);
+                }
+                else if (engine == "base64")
+                {
+                    double mempart = 0;
+                    processengine(mempart, 1);
+                }
+                string processengine(double mempart, double isbase)
+                {
+                    if (isbase == 0)
                     {
+                        double encodetxtlenght = (encode.Length);
+                        double processedtxt = (0);
+                        double toprocessparts = (processedtxt / mempart);
+                        while (processedtxt > encodetxtlenght)
+                        {
 
-                        processedtxt++;
+                            processedtxt++;
+                        }
+                        return ("");
                     }
-                    return ("");
-                }
-                else if (isbase > 1)
-                {
-                    MessageBox.Show("Base is not avavible sorry :(");
-                    return ("");
-                }
-                else
-                {
-                    MessageBox.Show("An error has happened");
-                    return ("");
+                    else if (isbase > 1)
+                    {
+                        MessageBox.Show("Base is not avavible sorry :(");
+                        return ("");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error has happened");
+                        return ("");
+                    }
                 }
             }
         }

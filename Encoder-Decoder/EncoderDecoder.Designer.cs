@@ -49,6 +49,7 @@ namespace Encoder_Decoder
             this.processer = new System.ComponentModel.BackgroundWorker();
             this.opentext = new System.Windows.Forms.OpenFileDialog();
             this.engineselector = new System.Windows.Forms.ComboBox();
+            this.encodetypeselector = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // updater
@@ -189,6 +190,18 @@ namespace Encoder_Decoder
             this.engineselector.TabIndex = 9;
             this.engineselector.SelectedIndexChanged += new System.EventHandler(this.engineselector_SelectedIndexChanged);
             // 
+            // encodetypeselector
+            // 
+            this.encodetypeselector.FormattingEnabled = true;
+            this.encodetypeselector.Items.AddRange(new object[] {
+            "Hash",
+            "Bitcode",
+            "Slash"});
+            this.encodetypeselector.Location = new System.Drawing.Point(474, 77);
+            this.encodetypeselector.Name = "encodetypeselector";
+            this.encodetypeselector.Size = new System.Drawing.Size(121, 28);
+            this.encodetypeselector.TabIndex = 10;
+            // 
             // EncoderDecoder
             // 
             this.AccessibleDescription = "This is a encoder/decoder program for null and others";
@@ -197,6 +210,7 @@ namespace Encoder_Decoder
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(607, 353);
+            this.Controls.Add(this.encodetypeselector);
             this.Controls.Add(this.engineselector);
             this.Controls.Add(this.Progresslabelc);
             this.Controls.Add(this.Progresslabel);
@@ -241,6 +255,7 @@ namespace Encoder_Decoder
         private System.ComponentModel.BackgroundWorker processer;
         public System.Windows.Forms.OpenFileDialog opentext;
         private System.Windows.Forms.ComboBox engineselector;
+        private System.Windows.Forms.ComboBox encodetypeselector;
     }
 }
 
