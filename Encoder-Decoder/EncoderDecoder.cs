@@ -14,7 +14,7 @@ namespace Encoder_Decoder
 {
     public partial class EncoderDecoder : Form
     {
-        string hash = "nT/r4jOx";
+        string null2hash = "?MtMJMQc";
         public EncoderDecoder()
         {
             InitializeComponent();
@@ -71,17 +71,21 @@ namespace Encoder_Decoder
             }
             else if (encodetypeselector.Text == "Hash")
             {
-                byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
-                using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                if (engineselector.Text == "null//2")
                 {
-                    byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(hash));
-                    using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                    byte[] data = UTF8Encoding.UTF8.GetBytes(Encodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
                     {
-                        ICryptoTransform transform = tripdes.CreateEncryptor();
-                        byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
-                        this.Decodestring.Text = (Convert.ToBase64String(results, 0, results.Length));
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null2hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateEncryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Decodestring.Text = (Convert.ToBase64String(results, 0, results.Length));
+                        }
                     }
                 }
+                this.Progresslabelc.Text = ("Done.");
             }
         }
 
@@ -99,11 +103,75 @@ namespace Encoder_Decoder
         {
             MessageBox.Show("This is a help button.");
         }
+        public void Decodefrommem()
+        {
+            if (encodetypeselector.Text == "Bitcode")
+            {
+                string engine = (File.ReadAllText(@".\engine.memory"));
+                string encode = (File.ReadAllText(@".\toencode.memory"));
+                if (engine == "null//2")
+                {
+                    double mempart = 5;
+                    processengine(mempart, 0);
+                }
+                else if (engine == "base64")
+                {
+                    double mempart = 0;
+                    processengine(mempart, 1);
+                }
+                string processengine(double mempart, double isbase)
+                {
+                    if (isbase == 0)
+                    {
+                        double encodetxtlenght = (encode.Length);
+                        double processedtxt = (0);
+                        double toprocessparts = (processedtxt / mempart);
+                        while (processedtxt > encodetxtlenght)
+                        {
+
+                            processedtxt++;
+                        }
+                        return ("");
+                    }
+                    else if (isbase > 1)
+                    {
+                        MessageBox.Show("Base is not avavible sorry :(");
+                        return ("");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error has happened");
+                        return ("");
+                    }
+                }
+            }
+            else if (encodetypeselector.Text == "Hash")
+            {
+                if (engineselector.Text == "null//2")
+                {
+                    byte[] data = Convert.FromBase64String(Decodestring.Text);
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(null2hash));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateDecryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            this.Encodestring.Text = (UTF8Encoding.UTF8.GetString(results));
+                        }
+                    }
+                }
+                this.Progresslabelc.Text = ("Done.");
+            }
+        }
 
         private void Decode_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Starting to decode...");
             Progresslabelc.Text = "Decoding...";
+            string todecode = (this.Decodestring.Text);
+            File.WriteAllText(@".\todecode.memory", todecode);
+            Decodefrommem();
         }
 
         private void updater_DoWork(object sender, DoWorkEventArgs e)
@@ -130,6 +198,11 @@ namespace Encoder_Decoder
         {
             string selectedengine = (this.engineselector.Text);
             File.WriteAllText(@".\engine.memory", selectedengine);
+        }
+
+        private void EncoderDecoder_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

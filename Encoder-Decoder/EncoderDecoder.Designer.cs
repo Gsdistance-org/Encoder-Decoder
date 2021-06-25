@@ -229,7 +229,8 @@ namespace Encoder_Decoder
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EncoderDecoder";
             this.help.SetShowHelp(this, true);
-            this.Text = "s";
+            this.Text = "Encoder-Decoder";
+            this.Load += new System.EventHandler(this.EncoderDecoder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
