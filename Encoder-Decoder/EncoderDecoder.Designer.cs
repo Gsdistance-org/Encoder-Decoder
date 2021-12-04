@@ -76,7 +76,7 @@ namespace Encoder_Decoder
             this.toencodelabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.toencodelabel.Location = new System.Drawing.Point(48, 9);
             this.toencodelabel.Name = "toencodelabel";
-            this.toencodelabel.Size = new System.Drawing.Size(83, 20);
+            this.toencodelabel.Size = new System.Drawing.Size(69, 16);
             this.toencodelabel.TabIndex = 1;
             this.toencodelabel.Text = "To Encode";
             this.toencodelabel.Click += new System.EventHandler(this.toencodelabel_Click);
@@ -105,7 +105,7 @@ namespace Encoder_Decoder
             this.todecodelabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.todecodelabel.Location = new System.Drawing.Point(39, 156);
             this.todecodelabel.Name = "todecodelabel";
-            this.todecodelabel.Size = new System.Drawing.Size(81, 20);
+            this.todecodelabel.Size = new System.Drawing.Size(67, 16);
             this.todecodelabel.TabIndex = 4;
             this.todecodelabel.Text = "To Decode";
             this.todecodelabel.Click += new System.EventHandler(this.todecodelabel_Click);
@@ -161,7 +161,7 @@ namespace Encoder_Decoder
             this.Progresslabel.AutoSize = true;
             this.Progresslabel.Location = new System.Drawing.Point(258, 2);
             this.Progresslabel.Name = "Progresslabel";
-            this.Progresslabel.Size = new System.Drawing.Size(72, 20);
+            this.Progresslabel.Size = new System.Drawing.Size(58, 16);
             this.Progresslabel.TabIndex = 7;
             this.Progresslabel.Text = "Progress:";
             // 
@@ -170,7 +170,7 @@ namespace Encoder_Decoder
             this.Progresslabelc.AutoSize = true;
             this.Progresslabelc.Location = new System.Drawing.Point(258, 22);
             this.Progresslabelc.Name = "Progresslabelc";
-            this.Progresslabelc.Size = new System.Drawing.Size(0, 20);
+            this.Progresslabelc.Size = new System.Drawing.Size(0, 16);
             this.Progresslabelc.TabIndex = 8;
             // 
             // processer
@@ -192,7 +192,7 @@ namespace Encoder_Decoder
             "null//3"});
             this.hashengineselector.Location = new System.Drawing.Point(169, 100);
             this.hashengineselector.Name = "hashengineselector";
-            this.hashengineselector.Size = new System.Drawing.Size(121, 28);
+            this.hashengineselector.Size = new System.Drawing.Size(121, 24);
             this.hashengineselector.TabIndex = 9;
             this.hashengineselector.SelectedIndexChanged += new System.EventHandler(this.engineselector_SelectedIndexChanged);
             // 
@@ -203,10 +203,11 @@ namespace Encoder_Decoder
             "Hash",
             "Bitcode",
             "Slash",
-            "None"});
+            "None",
+            "SHA512"});
             this.encodetypeselector.Location = new System.Drawing.Point(169, 55);
             this.encodetypeselector.Name = "encodetypeselector";
-            this.encodetypeselector.Size = new System.Drawing.Size(121, 28);
+            this.encodetypeselector.Size = new System.Drawing.Size(121, 24);
             this.encodetypeselector.TabIndex = 10;
             this.encodetypeselector.SelectedIndexChanged += new System.EventHandler(this.encodetypeselector_SelectedIndexChanged);
             // 
@@ -223,14 +224,15 @@ namespace Encoder_Decoder
             this.Bitcodeselector.FormattingEnabled = true;
             this.Bitcodeselector.Location = new System.Drawing.Point(169, 100);
             this.Bitcodeselector.Name = "Bitcodeselector";
-            this.Bitcodeselector.Size = new System.Drawing.Size(121, 28);
+            this.Bitcodeselector.Size = new System.Drawing.Size(121, 24);
             this.Bitcodeselector.TabIndex = 12;
+            this.Bitcodeselector.SelectedIndexChanged += new System.EventHandler(this.Bitcodeselector_SelectedIndexChanged);
             // 
             // EncoderDecoder
             // 
             this.AccessibleDescription = "This is a encoder/decoder program for null and others";
             this.AccessibleName = "EncoderDecoder";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(329, 353);
