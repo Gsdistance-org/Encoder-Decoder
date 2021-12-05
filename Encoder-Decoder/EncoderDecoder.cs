@@ -290,7 +290,7 @@ namespace Encoder_Decoder
 
         private void backimage_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Application.Exit();
+            Application.Restart();
         }
 
         private void engineselector_SelectedIndexChanged(object sender, EventArgs e)
@@ -349,6 +349,19 @@ namespace Encoder_Decoder
         }
 
         private void Bitcodeselector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EncoderDecoder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            File.Delete(@".\todecode.memory");
+            File.Delete(@".\toencode.memory");
+            File.Delete(@".\engine.memory");
+            encoderdecoderservice.Stop();
+        }
+
+        private void process1_Exited(object sender, EventArgs e)
         {
 
         }

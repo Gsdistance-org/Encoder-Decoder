@@ -145,6 +145,7 @@ namespace Encoder_Decoder
             this.process1.StartInfo.StandardOutputEncoding = null;
             this.process1.StartInfo.UserName = "";
             this.process1.SynchronizingObject = this;
+            this.process1.Exited += new System.EventHandler(this.process1_Exited);
             // 
             // helpbutton
             // 
@@ -258,6 +259,7 @@ namespace Encoder_Decoder
             this.Name = "EncoderDecoder";
             this.help.SetShowHelp(this, true);
             this.Text = "Encoder-Decoder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EncoderDecoder_FormClosing);
             this.Load += new System.EventHandler(this.EncoderDecoder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
